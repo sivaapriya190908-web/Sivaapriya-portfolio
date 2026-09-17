@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bloom-bg: #080708;
+  --bloom-dark-burgundy: #16070C;
+  --bloom-burgundy: #5A0F20;
+  --bloom-crimson: #8B1129;
+  --bloom-primary-text: #E8D8C3;
+  --bloom-muted-text: #B9A99A;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bloom-bg);
+  color: var(--bloom-primary-text);
+  font-family: 'Inter', system-ui, sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: rgba(139, 17, 41, 0.3);
+  color: #E8D8C3;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #080708;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #5A0F20, #8B1129);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #8B1129, #A8203A);
+}
+
+/* Silk texture for large headings */
+.silk-texture {
+  background: linear-gradient(
+    135deg,
+    #E8D8C3 0%,
+    #D4C4B0 25%,
+    #E8D8C3 50%,
+    #C9B9A5 75%,
+    #E8D8C3 100%
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: silkShimmer 8s ease-in-out infinite;
+}
+
+@keyframes silkShimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Glass card */
+.glass-card {
+  background: linear-gradient(135deg, rgba(22, 7, 12, 0.6) 0%, rgba(10, 6, 8, 0.4) 100%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(139, 17, 41, 0.15);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+  border-color: rgba(139, 17, 41, 0.4);
+  box-shadow: 0 8px 32px rgba(90, 15, 32, 0.15), 0 0 0 1px rgba(139, 17, 41, 0.1);
+}
+
+/* Frosted nav */
+.frosted-nav {
+  background: rgba(8, 7, 8, 0.7);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border-bottom: 1px solid rgba(139, 17, 41, 0.08);
+}
+
+/* Section reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Glow */
+.crimson-glow {
+  box-shadow: 0 0 40px rgba(139, 17, 41, 0.15), 0 0 80px rgba(90, 15, 32, 0.08);
+}
+
+/* Petal card bloom hover */
+.petal-card {
+  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.petal-card:hover {
+  transform: translateY(-8px) scale(1.02);
+}
+
+/* Timeline stem */
+.stem-line {
+  background: linear-gradient(to bottom, transparent, #5A0F20 10%, #8B1129 50%, #5A0F20 90%, transparent);
+}
+
+/* Button */
+.bloom-btn {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.bloom-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(139, 17, 41, 0.2), rgba(90, 15, 32, 0.1));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.bloom-btn:hover::before {
+  opacity: 1;
+}
+.bloom-btn:hover {
+  border-color: rgba(139, 17, 41, 0.6);
+  box-shadow: 0 0 30px rgba(139, 17, 41, 0.2);
+}
+
+/* Gradient text */
+.gradient-crimson {
+  background: linear-gradient(135deg, #8B1129, #A8203A, #5A0F20);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Animated dash for hackathon line */
+@keyframes drawLine {
+  from { stroke-dashoffset: 1000; }
+  to { stroke-dashoffset: 0; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .silk-texture {
+    -webkit-text-fill-color: #E8D8C3;
+    animation: none;
+  }
+}
